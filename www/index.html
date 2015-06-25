@@ -1,74 +1,189 @@
-<!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
+<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <script src="js/jquery-1.11.3.min.js" type="application/javascript"></script>
-        <script src="js/jquery.mobile-1.4.5.min.js" type="application/javascript"></script>
-        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div>
-            <h1>Hello World</h1>
-            <div data-role="footer" class="ui-footer">
-                <div data-role="navbar" role="navigation">
-                    <ul>
-                        <li>
-                            <a href="#" data-icon="grid" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-active ui-btn-up-a">
-                                <span class="ui-btn-inner">
-                                    <span class="ui-btn-text">PROGRAMS</span>
-                                    <span class="ui-icon ui-icon-grid ui-icon-shadow">&nbsp;</span></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" data-icon="star" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a">
-                                <span class="ui-btn-inner">
-                                    <span class="ui-btn-text">PROCEEDINGS</span>
-                                    <span class="ui-icon ui-icon-star ui-icon-shadow">&nbsp;</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" data-icon="location" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a">
-                                <span class="ui-btn-inner"><span class="ui-btn-text">VENUE</span>
-                                    <span class="ui-icon ui-icon-location ui-icon-shadow">&nbsp;</span>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
+<head>
+    <title> PACIS 2015 </title>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+    <!-- Javascript includes -->
+    <script src="./js/jquery-1.10.2.js"></script>
+    <script src="./js/mobileinit.js"></script>
+    <script src="./js/ios-orientationchange-fix.min.js"></script>
+    <script src="./js/jquery.mobile-1.4.0.js"></script>
+    <script src="./js/application.js"></script>
+
+    <!-- jQuery Mobile CSS bits -->
+    <link rel="stylesheet" href="./css/jquery.mobile-1.4.0.min.css" />
+    <!-- fa -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <!-- Startup Images for iDevices -->
+    <script>
+        (function() {
+            var a;
+            if (navigator.platform === "iPad") {
+                a = window.orientation !== 90 || window.orientation === -90 ? "img/startup-tablet-landscape.png" : "img/startup-tablet-portrait.png"
+            } else {
+                a = window.devicePixelRatio === 2 ? "img/startup-retina.png" : "img/startup.png"
+            }
+            document.write('<link rel="apple-touch-startup-image" href="' + a + '"/>')
+        })()
+    </script>
+
+    <!-- The script prevents links from opening in mobile safari. https://gist.github.com/1042026 -->
+    <script>
+        (function(a, b, c) {
+            if (c in b && b[c]) {
+                var d, e = a.location,
+                        f = /^(a|html)$/i;
+                a.addEventListener("click", function(a) {
+                    d = a.target;
+                    while (!f.test(d.nodeName)) d = d.parentNode;
+                    "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href)
+                }, !1)
+            }
+        })(document, window.navigator, "standalone")
+    </script>
+</head>
+
+<body>
+
+<!-- home page -->
+<div data-role="page" id="home" class="home" data-next="programs" data-transition="slide">
+    <div data-role="content" class="home-container">
+        <div class="home-content">
+            <div class="home-image">
+                <img src="./img/home.png">
+            </div>
+            <div class="home-description">
+                The 19th Pacific Asia Conference on Information Systems (PACIS 2015) provides a forum for researchers and practitioners working on all aspects of Information Systems.
             </div>
         </div>
+    </div>
 
-        <!--<script type="text/javascript" src="cordova.js"></script>-->
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#programs"><i class="fa fa-calendar-o nav-icon"></i>Programs</a></li>
+                <li><a href="#proceedings"><i class="fa fa-file-text nav-icon"></i>Proceedings</a></li>
+                <li><a href="#venue"><i class="fa fa-map-marker nav-icon"></i>Venue</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end of page -->
+
+
+
+<!-- programs FIRST page -->
+<div data-role="page" id="programs" data-prev="home" data-next="proceedings" data-transition="slide">
+    <div data-role="content" class="programs-container">
+
+        <select id="programsdate">
+            <option selected="selected" value="">Choose day</option>
+            <option value="#programs1">Sunday, 5 July</option>
+            <option value="#programs2">Monday, 6 July</option>
+            <option value="#programs3">Tuesday, 7 July</option>
+            <option value="#programs4">Wednesday, 8 July</option>
+            <option value="#programs5">Thursday, 9 July</option>
+        </select>
+
+        <div class="programs-content">
+            <div id="programs1" class="programs-day">
+
+                <h1> Sunday, 5 July </h1>
+                <h2> Day One </h2>
+
+                <table class="timeperiod">
+                    <tr>
+                        <td>
+                            <P>
+                                2.00pm - 5.00pm
+                            </P>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <P>
+                                Doctoral Consortium – UTown
+                            </P>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="timeperiod">
+                    <tr>
+                        <td>
+                            <P>
+                                6.00pm - 8.00pm
+                            </P>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <P>
+                                Doctoral Consortium Welcome Dinner
+                            </P>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div id="programs2" class="programs-day">
+                <table class="timeperiod">
+                    <tr>
+                        <td>
+                            <P>
+                                2.00pm - 5.00pm
+                            </P>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <P>
+                                Testing
+                            </P>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#programs" class="ui-btn-active"><i class="fa fa-calendar-o nav-icon"></i>Programs</a></li>
+                <li><a href="#proceedings"><i class="fa fa-file-text nav-icon"></i>Proceedings</a></li>
+                <li><a href="#venue"><i class="fa fa-map-marker nav-icon"></i>Venue</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end of page -->
+
+    <!--js-->
+    <!-- for select dropdown in programs -->
+    <script>
+        $("#programsdate").change(function(){
+            if (this.selectedIndex!==0) {
+                console.log($(this).val());
+                window.location.href = $(this).val();
+            }
+        });
+
+    </script>
+</body>
 </html>
+
+
+
